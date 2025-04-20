@@ -12,6 +12,12 @@ inputs:
 runs:
   using: composite
   steps:
+      - name: Set ownership
+        working-directory: ${{ inputs.github-workspace }}
+        id: chown
+        shell: bash
+        run: sudo chown -R $USER:$USER ${{ inputs.github-workspace }}
+
       - name: Clean up workspace 
         working-directory: ${{ inputs.github-workspace }}
         id: cleanup
